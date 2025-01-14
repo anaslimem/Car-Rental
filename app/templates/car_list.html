@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Cars {% endblock %}
+{% block content %}
+<h1>Available Cars</h1>
+{% if cars %}
+    {% for car in cars %}
+<ul>
+<li>
+    <strong>Car Name:</strong>{{car.name}} <br>
+    <strong>Model:</strong>{{car.Model}} <br>
+    <strong>Year:</strong>{{car.Year}} <br>
+</li>
+</ul>
+    {% endfor %}
+{% else %}
+<p>No cars available</p>
+{% endif %}
+{% endblock %}
