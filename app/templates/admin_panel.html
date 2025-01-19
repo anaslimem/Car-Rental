@@ -1,10 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<div class="admin-container">
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="{{ url_for('admin.admin') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin.add_car') }}">Add a New Car</a></li>
+            <li><a href="{{ url_for('cars.list_cars') }}">Show Cars</a></li>
+            <li><a href="{{ url_for('admin.delete_car') }}">Delete Car</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h1>Admin Dashboard</h1>
+        <hr>
+        <h2>All Cars</h2>
+        {% if cars %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Car ID</th>
+                        <th>Car Name</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for car in cars %}
+                    <tr>
+                        <td>{{ car.car_id }}</td>
+                        <td>{{ car.car_name }}</td>
+                        <td>{{ car.car_model }}</td>
+                        <td>{{ car.car_year }}</td>
+                        <td>{{ car.car_price }}TND</td>
+                        <td>
+                            {% if car.available %}
+                                Available
+                            {% else %}
+                                Not Available
+                            {% endif %}
+                            <form method="POST" action="{{ url_for('admin.toggle_availability') }}">
+                                <input type="hidden" name="car_id" value="{{ car.car_id }}">
+                                <button type="submit" class="book">
+                                    {% if car.available %}
+                                        Make Unavailable
+                                    {% else %}
+                                        Make Available
+                                    {% endif %}
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            {% if car.car_image %}
+                            <img src="{{ url_for('static', filename='images/' + car.car_image) }}" alt="{{ car.car_name }}" style="width: 300px; height: auto;">
+                            {% else %}
+                                 No Image
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No cars available.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

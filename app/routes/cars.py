@@ -1,12 +1,12 @@
-from flask import Blueprint, render_template, jsonify,current_app
-
+from flask import Blueprint, render_template, current_app, request, redirect, url_for,flash
 
 cars_bp= Blueprint('cars', __name__)
-@cars_bp.route('/', methods=['GET'])
-def list_cars():
-    cars = current_app.mongo.db.cars
-    cars.insert_one({"name": "Toyota","Model":"Corolla","Year":"2021"})
-    cars = current_app.mongo.db.cars.find()
-    cars_list = list(cars)
-    return render_template("car_list.html", cars=cars_list)
+@cars_bp.route('/', methods=['GET', 'POST'])
+def cars():
+    return redirect(url_for('cars.list_cars'))
 
+@cars_bp.route('/list_cars', methods=['GET'])
+def list_cars():
+    cars = current_app.mongo.db.cars.find()
+    cars = list(cars)
+    return render_template("car_list.html", cars=cars)

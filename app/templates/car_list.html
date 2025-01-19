@@ -1,18 +1,41 @@
 {% extends "base.html" %}
-{% block title %} Cars {% endblock %}
+
 {% block content %}
-<h1>Available Cars</h1>
-{% if cars %}
-    {% for car in cars %}
-<ul>
-<li>
-    <strong>Car Name:</strong>{{car.name}} <br>
-    <strong>Model:</strong>{{car.Model}} <br>
-    <strong>Year:</strong>{{car.Year}} <br>
-</li>
-</ul>
-    {% endfor %}
-{% else %}
-<p>No cars available</p>
-{% endif %}
+<div class="main-content">
+    <h1>Available Cars</h1>
+    {% if cars %}
+    <div class="gallery">
+       {% for car in cars %}
+        <div class="car-item">
+            <div class="car-image">
+                <img src="{{ url_for('static', filename='images/' + car.car_image) }}" alt="{{ car.car_name }}">
+            </div>
+            <div class="car-info">
+                <strong>Car Id:</strong> {{ car.car_id }} <br>
+                <strong>Car Name:</strong> {{ car.car_name }} <br>
+                <strong>Model:</strong> {{ car.car_model }} <br>
+                <strong>Year:</strong> {{ car.car_year }} <br>
+                <strong>Price:</strong> ${{ car.car_price }} <br>
+                <strong>Status:</strong>
+                {% if car.available %}
+                    Available
+                {% else %}
+                    Not Available
+                {% endif %}
+                <br>
+                {% if car.available %}
+                <button  type="button" class="book btn btn-primary" data-bs-toggle="modal" onclick="window.location.href='{{ url_for('bookings.booking', car_id=car.car_id) }}'">
+                    Book it
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-secondary custom-btn" disabled>Not Available</button>
+                {% endif %}
+            </div>
+        </div>
+       {% endfor %}
+    </div>
+    {% else %}
+    <p>No cars available</p>
+    {% endif %}
+</div>
 {% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Add Cars {% endblock %}
+{% block content %}
+<div class="admin-container">
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="{{ url_for('admin.admin') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin.add_car') }}">Add a New Car</a></li>
+            <li><a href="{{ url_for('cars.list_cars') }}">Show Cars</a></li>
+            <li><a href="{{ url_for('admin.delete_car') }}">Delete Car</a></li>
+        </ul>
+    </div>
+ <div class="main-content">
+        <h1>Add a New Car</h1>
+        <form action="{{ url_for('admin.add_car') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="car_id">Car ID</label>
+                <input type="number" class="form-control" id="car_id" name="car_id" placeholder="Car ID" min="1" required><br><br>
+
+                <label for="car_name">Car Name</label>
+                <input type="text" class="form-control" id="car_name" name="car_name" placeholder="Car Name" required><br><br>
+
+                <label for="car_model">Car Model</label>
+                <input type="text" class="form-control" id="car_model" name="car_model" placeholder="Car Model" required><br><br>
+
+                <label for="car_year">Car Year</label>
+                <input type="number" class="form-control" id="car_year" name="car_year" placeholder="Car Year" min="1" required><br><br>
+
+                <label for="car_price">Car Price</label>
+                <input type="number" class="form-control" id="car_price" name="car_price" placeholder="Car Price" min="1" required><br><br>
+
+                <label for="car_image">Car Image</label>
+                <input type="file" class="form-control" id="car_image" name="car_image" accept="image/*"  required><br><br>
+
+                <label for="car_availability">Available</label>
+                <input type="checkbox" class="form-check-input" id="car_availability" name="car_availability">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Add Car</button>
+        </form>
+    </div>
+  </div>
+{% endblock %}

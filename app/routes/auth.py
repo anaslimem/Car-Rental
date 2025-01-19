@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, jsonify,redirect, url_for,current_app
+from flask import Blueprint, render_template,redirect, url_for,current_app
 
 
 auth_bp = Blueprint('auth', __name__,template_folder='../templates')
