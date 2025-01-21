@@ -37,7 +37,9 @@ Follow these steps to set up the project on your local machine:
 
 ## Technologies Used
   -**Backend:** Flask
+  
   -**Frontend:** HTML, CSS
+  
   -**Database:** MongoDB
 
 ---
