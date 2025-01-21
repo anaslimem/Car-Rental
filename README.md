@@ -31,6 +31,7 @@ Follow these steps to set up the project on your local machine:
    ```
 3. **Set up the database:**
    -Install MongoDB and start the MongoDB service.
+   
    -Create a database for the project and update the configuration in run.py
 
 ---
@@ -46,7 +47,10 @@ Follow these steps to set up the project on your local machine:
 
 ## Future Improvements (Planned for the Second Edition)
   -Add more detailed car information (e.g., pricing, availability by date).
+  
   -Implement a user dashboard for managing bookings.
+  
   -Enhance the admin panel with better analytics.
+  
   -Introduce payment integration for booking.
 
