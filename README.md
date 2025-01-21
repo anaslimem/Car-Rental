@@ -30,6 +30,7 @@ Follow these steps to set up the project on your local machine:
    pip install -r requirements.txt
    ```
 3. **Set up the database:**
+4. 
    -Install MongoDB and start the MongoDB service.
    
    -Create a database for the project and update the configuration in run.py
