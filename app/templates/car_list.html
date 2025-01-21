@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block content %}
 <div class="main-content">
     <h1>Available Cars</h1>
@@ -11,11 +10,10 @@
                 <img src="{{ url_for('static', filename='images/' + car.car_image) }}" alt="{{ car.car_name }}">
             </div>
             <div class="car-info">
-                <strong>Car Id:</strong> {{ car.car_id }} <br>
                 <strong>Car Name:</strong> {{ car.car_name }} <br>
                 <strong>Model:</strong> {{ car.car_model }} <br>
                 <strong>Year:</strong> {{ car.car_year }} <br>
-                <strong>Price:</strong> ${{ car.car_price }} <br>
+                <strong>Price:</strong> {{ car.car_price }} TND<br>
                 <strong>Status:</strong>
                 {% if car.available %}
                     Available
@@ -24,7 +22,7 @@
                 {% endif %}
                 <br>
                 {% if car.available %}
-                <button  type="button" class="book btn btn-primary" data-bs-toggle="modal" onclick="window.location.href='{{ url_for('bookings.booking', car_id=car.car_id) }}'">
+                <button  type="button" class="book btn btn-primary" data-bs-toggle="modal" onclick="window.location.href='{{ url_for('bookings.bookings', car_id=car.car_id) }}'">
                     Book it
                 </button>
                 {% else %}
